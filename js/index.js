@@ -1,22 +1,23 @@
-const loadData = (all) => {
+const loadData = (dataLimit) => {
     const URL = `https://openapi.programming-hero.com/api/ai/tools`
     fetch(URL)
         .then(res => res.json())
-        .then(data => showAllData(data.data.tools, all))
+        .then(data => showAllData(data.data.tools, dataLimit))
 }
 
-const showAllData = (allDetails, all) => {
+const showAllData = (allDetails,dataLimit) => {
     console.log(allDetails)
     // show all cards-----------------------------
     const divContainer = document.getElementById('all-card');
     divContainer.innerHTML = '';
 
-    if (allDetails.length > 6) {
+    const showall = document.getElementById('Show-all')
+    if (dataLimit && allDetails.length > 6) {
         allDetails = allDetails.slice(0, 6);
+        showall.classList.remove('d-none')
     }
     else {
-        // alert somthing
-        // allDetails = all
+        showall.classList.add('d-none')
     }
 
     allDetails.forEach(singleDetails => {
@@ -60,7 +61,7 @@ const loadSinglecard = id => {
 }
 
 const displaySingleCard = data => {
-    console.log(data.input_output_examples[0].output)
+    console.log(data.accuracy)
      
 
 
@@ -115,10 +116,12 @@ const displaySingleCard = data => {
     modal2.classList.add('col')
     modal2.innerHTML = `
     
-    <div class="card h-100 text-center">
+    <div" style="position: relative; class="card h-100 text-center">
 
         <div class="card-body">
-        <img src=${data.image_link[0]}  class="card-img-top" alt="...">
+        <button style=" position: absolute; margin-top: -15px; margin-left: 400px; " type="button" class="btn btn-danger btn-sm">${data.accuracy.score}%accuracy</button>
+
+        <img  src=${data.image_link[0]} class="card-img-top" alt="...">
         <h5 class="card-title mt-4">${data.input_output_examples[0].input}</h5>
          <p class="card-text my-3"> ${data.input_output_examples[0].output}</p>
          </div>
@@ -128,9 +131,10 @@ const displaySingleCard = data => {
     modalContainer.appendChild(modal2)
 }
 
-loadData();
 
+loadData(6);
 
-// document.getElementById('Show-all').addEventListener('click', function () {
-//     loadData(12);
-// })
+document.getElementById('Show-all').addEventListener('click', function () {
+        loadData();
+    })
+    
