@@ -61,11 +61,7 @@ const loadSinglecard = id => {
 
 const displaySingleCard = data => {
     console.log(data.integrations)
-    data.integrations.forEach(singleIntgr=>{
-        console.log(singleIntgr)
-        const intdiv = document.getElementById('intg-div')
-        console.log(intdiv)
-    })
+     
 
 
     // feturee add in modal --------
@@ -96,19 +92,26 @@ const displaySingleCard = data => {
          
          </div>
          </div>
-         <div>
-         
-         </div>
-         <div class="mt-4">
-         <h5>Features</h5>
+     <div class= "d-flex justify-content-between mt-4">    
+      <div >
+      <h5>Features</h5>
+      <ul>
+         <li>${data.features[1].feature_name})</li>
+         <li>${data.features[2].feature_name}</li>
+         <li>${data.features[3].feature_name}</li>
+      </ul>
+      </div>
+      <div>
+      <h5>Integrations</h5>
          <ul>
-            <li>${data.features[1].feature_name})</li>
-            <li>${data.features[2].feature_name}</li>
-            <li>${data.features[3].feature_name}</li>
+             <li>${data.integrations[0]? data.integrations[0] : 'No Data Found'}</li>
+             <li>${data.integrations[1]? data.integrations[1] : 'No Data Found'}</li>
+             <li>${data.integrations[2]? data.integrations[2] : 'No Data Found'}</li>
+             <li>${data.integrations[3]? data.integrations[3] : 'No Data Found'}</li>
+             <li>${data.integrations[4]? data.integrations[4] : 'No Data Found'}</li>
          </ul>
-         </div id ="intg-div">
-
-         </div>
+       </div>
+     </div>
     </div>
     
     `
