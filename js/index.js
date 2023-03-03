@@ -60,17 +60,11 @@ const loadSinglecard = id => {
 }
 
 const displaySingleCard = data => {
-    console.log(data.integrations)
+    console.log(data.input_output_examples[0].output)
      
 
 
-    // feturee add in modal --------
      
-     
-    
-    // data.features.forEach(dot =>{
-    //     console.log(dot)
-    // })
     const modalContainer = document.getElementById('modal-content');
     modalContainer.innerHTML = ''
     const modal = document.createElement('div');
@@ -115,22 +109,18 @@ const displaySingleCard = data => {
     </div>
     
     `
-    
     modalContainer.appendChild(modal)
 
-    const ds = document.getElementById('feature-madal');
-    // console.log(ds)
     const modal2 = document.createElement('div');
     modal2.classList.add('col')
     modal2.innerHTML = `
     
-    <div class="card h-100">
+    <div class="card h-100 text-center">
+
         <div class="card-body">
         <img src=${data.image_link[0]}  class="card-img-top" alt="...">
-        <h5 class="card-title">Card title</h5>
-         <p class="card-text">This is a longer card with supporting text below as a
-            natural lead-in to additional content. This content is a little bit
-            longer.</p>
+        <h5 class="card-title mt-4">${data.input_output_examples[0].input}</h5>
+         <p class="card-text my-3"> ${data.input_output_examples[0].output}</p>
          </div>
     </div>
     
