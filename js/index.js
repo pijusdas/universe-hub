@@ -60,17 +60,17 @@ const loadSinglecard = id => {
 }
 
 const displaySingleCard = data => {
-    console.log(data.features)
+    console.log(data.integrations)
+    data.integrations.forEach(singleIntgr=>{
+        console.log(singleIntgr)
+        const intdiv = document.getElementById('intg-div')
+        console.log(intdiv)
+    })
+
 
     // feturee add in modal --------
-    // const modalFetureUl = document.getElementById('feature-modal');
-    // console.log(modalFetureUl)
-    // for(let singleFeature in data.features){
-    //     console.log(singleFeature)
-    //     const FeatureUl = document.createElement('li');
-    //     FeatureUl.innerText =singleFeature.feature_name;
-    //     // modalFetureUl.appendChild(FeatureUl);
-    // }
+     
+     
     
     // data.features.forEach(dot =>{
     //     console.log(dot)
@@ -80,7 +80,6 @@ const displaySingleCard = data => {
     const modal = document.createElement('div');
     modal.classList.add('col')
     modal.innerHTML = `
-    
     <div class="card h-100 bg-danger-subtle">
         <div class="card-body">
         <h5 class="card-title mb-4">${data.description? data.description: 'Description not found'}</h5>
@@ -100,17 +99,24 @@ const displaySingleCard = data => {
          <div>
          
          </div>
-         <div id="feature-modal">
-         <ul id="feature-mod">
-            
+         <div class="mt-4">
+         <h5>Features</h5>
+         <ul>
+            <li>${data.features[1].feature_name})</li>
+            <li>${data.features[2].feature_name}</li>
+            <li>${data.features[3].feature_name}</li>
          </ul>
-         </div>
+         </div id ="intg-div">
+
          </div>
     </div>
     
     `
     
     modalContainer.appendChild(modal)
+
+    const ds = document.getElementById('feature-madal');
+    // console.log(ds)
     const modal2 = document.createElement('div');
     modal2.classList.add('col')
     modal2.innerHTML = `
