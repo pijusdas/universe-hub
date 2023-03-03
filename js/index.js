@@ -40,7 +40,7 @@ const showAllData = (allDetails,dataLimit) => {
             <div class ="d-flex justify-content-between align-items-center py-3">
                  <div>
                  <h4>${name}</h4>
-                 <p>${published_in}</p>
+                 <p><i class="fa-regular fa-calendar-days"></i> ${published_in}</p>
                  </div>
                  <div><i data-bs-toggle="modal" data-bs-target="#exampleModal" class="fa-solid fa-arrow-right text-danger" onclick ="loadSinglecard('${id}')"></i></div>
             </div
@@ -61,7 +61,7 @@ const loadSinglecard = id => {
 }
 
 const displaySingleCard = data => {
-    console.log(data.accuracy)
+    console.log(data)
      
 
 
@@ -123,7 +123,7 @@ const displaySingleCard = data => {
 
         <img  src=${data.image_link[0]} class="card-img-top" alt="...">
         <h5 class="card-title mt-4">${data.input_output_examples[0].input}</h5>
-         <p class="card-text my-3"> ${data.input_output_examples[0].output}</p>
+         <p class="card-text my-3"> ${data.input_output_examples[0].output? data.input_output_examples[0].output : 'No! Not Yet! Take A Break!!!'}</p>
          </div>
     </div>
     
