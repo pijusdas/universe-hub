@@ -8,18 +8,27 @@ const loadData = (dataLimit) => {
         .then(res => res.json())
         .then(data => showAllData(data.data.tools, dataLimit))
 
-
+       
 }
  
 // short by date----------
 
-// if (sortByDate) {
-//     data.data.tools.sort((a, b) => 
+// if (allDetails) {
+//     allDetails.sort((a, b) => 
 //     new Date(a.published_in) - new Date(b.published_in));
+//     console.log(  )
 // }
 
-
 const showAllData = (allDetails,dataLimit) => {
+
+    // const allDate = allDetails
+    // console.log(allDate)
+    //  customsorts = (a,b) =>{
+    //     const dateA = a.published_in;
+    //     const dateB = b.published_in;
+    //  }
+    //  console.log(allDate.sort(customsorts))
+  
     // show all cards-----------------------------  
     const divContainer = document.getElementById('all-card');
     divContainer.innerHTML = '';
@@ -102,19 +111,19 @@ const displaySingleCard = data => {
       <div >
       <h5>Features</h5>
       <ul>
-         <li>${data.features[1].feature_name})</li>
-         <li>${data.features[2].feature_name}</li>
-         <li>${data.features[3].feature_name}</li>
+         <li>${data.features? data.features[1].feature_name:'No Data Found'})</li>
+         <li>${data.features? data.features[2].feature_name:'No Data Found'}</li>
+         <li>${data.features? data.features[3].feature_name:'No Data Found'}</li>
       </ul>
       </div>
       <div>
       <h5>Integrations</h5>
          <ul>
-             <li>${data.integrations[0]? data.integrations[0] : 'No Data Found'}</li>
-             <li>${data.integrations[1]? data.integrations[1] : 'No Data Found'}</li>
-             <li>${data.integrations[2]? data.integrations[2] : 'No Data Found'}</li>
-             <li>${data.integrations[3]? data.integrations[3] : 'No Data Found'}</li>
-             <li>${data.integrations[4]? data.integrations[4] : 'No Data Found'}</li>
+             <li>${data.integrations? data.integrations[0] : 'No Data Found'}</li>
+             <li>${data.integrations? data.integrations[1] : 'No Data Found'}</li>
+             <li>${data.integrations? data.integrations[2] : 'No Data Found'}</li>
+             <li>${data.integrations? data.integrations[3] : 'No Data Found'}</li>
+             <li>${data.integrations? data.integrations[4] : 'No Data Found'}</li>
          </ul>
        </div>
      </div>
@@ -130,11 +139,11 @@ const displaySingleCard = data => {
     <div" style="position: relative; class="card h-100 text-center">
 
         <div class="card-body">
-        <button style=" position: absolute; margin-top: -15px; margin-left: 400px; " type="button" class="btn btn-danger btn-sm">${data.accuracy.score? data.accuracy.score: 'no data'}%accuracy</button>
+        <button style=" position: absolute; margin-top: -15px; margin-left: 400px; " type="button" id="accuracy" class="btn btn-danger d-none btn-sm">${data.accuracy? data.accuracy.score*100: ' '}%accuracy</button>
 
-        <img  src=${data.image_link[0]} class="card-img-top" alt="...">
-        <h5 class="card-title mt-4">${data.input_output_examples[0].input}</h5>
-         <p class="card-text my-3"> ${data.input_output_examples[0].output? data.input_output_examples[0].output : 'No! Not Yet! Take A Break!!!'}</p>
+        <img  src=${data.image_link? data.image_link[0]:'No Data Found'} class="card-img-top" alt="...">
+        <h5 class="card-title mt-4">${data.input_output_examples? data.input_output_examples[0].input:'No! Not Yet! Take A Break!!'}</h5>
+         <p class="card-text my-3"> ${data.input_output_examples? data.input_output_examples[0].output : 'No! Not Yet! Take A Break!!!'}</p>
          </div>
     </div>
     
