@@ -1,13 +1,22 @@
 
  
-const loadData = (dataLimit) => {
+const loadData = async (type) => {
     togglespinners(true)
     const URL = `https://openapi.programming-hero.com/api/ai/tools`
 
-    fetch(URL)
-        .then(res => res.json())
-        .then(data => showAllData(data.data.tools, dataLimit))
+    const res = await fetch(URL);
+    const data = await res.json()
 
+         
+
+
+        if (type === 'limite') {
+            const sortData = data.data.tools.sort((a, b) => new Date(b.published_in) - new Date(a.published_in));
+            showAllData(sortData, type);
+            // console.log(sortData);
+        } else {
+            showAllData(data.data.tools, type);
+        }
        
 }
  
@@ -19,7 +28,7 @@ const loadData = (dataLimit) => {
 //     console.log(  )
 // }
 
-const showAllData = (allDetails,dataLimit) => {
+const showAllData = (allDetails,type) => {
 
     // const allDate = allDetails
     // console.log(allDate)
@@ -34,7 +43,7 @@ const showAllData = (allDetails,dataLimit) => {
     divContainer.innerHTML = '';
 
     const showall = document.getElementById('Show-all')
-    if (dataLimit && allDetails.length > 6) {
+    if (type !== 'showAll' && allDetails.length > 6) {
         allDetails = allDetails.slice(0, 6);
         showall.classList.remove('d-none')
     }
@@ -177,9 +186,13 @@ const togglespinners = isLoading => {
 }
 
 document.getElementById('Show-all').addEventListener('click', function () {
-        loadData();
+        loadData('showAll');
     })
   
+document.getElementById('short-by-date').addEventListener('click', function(){
+    
+    loadData('limite')
 
+})
 
 loadData(6);
