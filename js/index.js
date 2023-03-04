@@ -84,8 +84,15 @@ const loadSinglecard =(id) => {
 }
 
 const displaySingleCard = data => {
-    console.log(data)
+    console.log(data.accuracy)
+
+
+
+    const acuracy = data.accuracy 
      
+    const accuricyScore = acuracy.score ? parseInt(acuracy.score * 100) : 00 ;
+
+
     const modalContainer = document.getElementById('modal-content');
     modalContainer.innerHTML = ''
     const modal = document.createElement('div');
@@ -139,7 +146,9 @@ const displaySingleCard = data => {
     <div" style="position: relative; class="card h-100 text-center">
 
         <div class="card-body">
-        <button style=" position: absolute; margin-top: -15px; margin-left: 400px; " type="button" id="accuracy" class="btn btn-danger d-none btn-sm">${data.accuracy? data.accuracy.score*100: ' '}%accuracy</button>
+        <div class = "">
+           <button style=" position: absolute; margin-top: -15px; margin-left: 400px; " type="button" id="accuracy" class="btn btn-danger ${accuricyScore == 00 ? "d-none" : "d-block" } btn-sm">${accuricyScore}%accuracy</button>
+        <div/>
 
         <img  src=${data.image_link? data.image_link[0]:'No Data Found'} class="card-img-top" alt="...">
         <h5 class="card-title mt-4">${data.input_output_examples? data.input_output_examples[0].input:'No! Not Yet! Take A Break!!'}</h5>
