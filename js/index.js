@@ -20,24 +20,11 @@ const loadData = async (type) => {
        
 }
  
-// short by date----------
 
-// if (allDetails) {
-//     allDetails.sort((a, b) => 
-//     new Date(a.published_in) - new Date(b.published_in));
-//     console.log(  )
-// }
 
 const showAllData = (allDetails,type) => {
 
-    // const allDate = allDetails
-    // console.log(allDate)
-    //  customsorts = (a,b) =>{
-    //     const dateA = a.published_in;
-    //     const dateB = b.published_in;
-    //  }
-    //  console.log(allDate.sort(customsorts))
-  
+    
     // show all cards-----------------------------  
     const divContainer = document.getElementById('all-card');
     divContainer.innerHTML = '';
@@ -92,10 +79,10 @@ const loadSinglecard =(id) => {
         .then(data => displaySingleCard(data.data))
 }
 
+
+// show modal data-----------------
 const displaySingleCard = data => {
     console.log(data.accuracy)
-
-
 
     const acuracy = data.accuracy 
      
@@ -110,7 +97,7 @@ const displaySingleCard = data => {
     <div class="card h-100 bg-danger-subtle">
         <div class="card-body">
         <h5 class="card-title mb-4">${data ? data.description: 'Description not found'}</h5>
-         <div class="d-flex justify-content-between gap-2 container text-center">
+         <div class="d-lg-flex justify-content-between gap-2 container text-center">
          <div class="bg-white p-4 rounded">
           <p style="color: green;">${data.pricing? data.pricing[0].price : 'Free Of Cost'} basic</p>
          </div>
@@ -185,10 +172,14 @@ const togglespinners = isLoading => {
     }
 }
 
+
+// show all data section---------------------
 document.getElementById('Show-all').addEventListener('click', function () {
         loadData('showAll');
     })
   
+
+    // short data--------------
 document.getElementById('short-by-date').addEventListener('click', function(){
     
     loadData('limite')
