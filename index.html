@@ -18,11 +18,20 @@
     <header>
         <div class="text-center mt-3 mb-5">
             <h1 class="">AI Universe Hub</h1>
-            <button class="btn btn-danger fw-semibold p-3 mt-4">Sort By Date</button>
+            <button id="short-by-date" class="btn btn-danger fw-semibold p-3 mt-4">Sort By Date</button>
         </div>
     </header>
     <!-- end header section -->
     <main>
+         <!-- spinner section start -->
+         <section id="spiner" class="d-none">
+            <div  style="height: 200px;" class="d-flex justify-content-center align-items-center ">
+                <div class="spinner-border" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            </section>
+
         <!-- card sectyion start here -->
         <section class="">
 
@@ -35,6 +44,9 @@
             </div>
         </section>
         <!-- card sectyion end here -->
+
+       
+        
 
         <!-- starts modal -->
         <!-- Button trigger modal -->
@@ -53,21 +65,7 @@
                         </div>
                         <div class="modal-body p-5">
                             <div id="modal-content" class="row row-cols-1 row-cols-md-2 g-4">
-                                <!-- <div class="col">
-
-                                </div>
-                                <div class="col">
-                                    <div class="card h-100">
-                                        <img src="..." class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <p class="card-text">This is a longer card with supporting text below as a
-                                                natural lead-in to additional content. This content is a little bit
-                                                longer.</p>
-                                        </div>
-                                    </div>
-                                </div> -->
-                               
+                                 
 
                             </div>
                         </div>

@@ -1,13 +1,26 @@
+
+ 
 const loadData = (dataLimit) => {
+    togglespinners(true)
     const URL = `https://openapi.programming-hero.com/api/ai/tools`
+
     fetch(URL)
         .then(res => res.json())
         .then(data => showAllData(data.data.tools, dataLimit))
+
+
 }
+ 
+// short by date----------
+
+// if (sortByDate) {
+//     data.data.tools.sort((a, b) => 
+//     new Date(a.published_in) - new Date(b.published_in));
+// }
+
 
 const showAllData = (allDetails,dataLimit) => {
-    console.log(allDetails)
-    // show all cards-----------------------------
+    // show all cards-----------------------------  
     const divContainer = document.getElementById('all-card');
     divContainer.innerHTML = '';
 
@@ -33,6 +46,7 @@ const showAllData = (allDetails,dataLimit) => {
              <p>1: ${features[0] ? features[0] : 'no found Feature'}</p>
              <p>2: ${features[1] ? features[1] : 'no found Feature'}</p>
              <p>3: ${features[2] ? features[2] : 'no found Feature'}</p>
+             <p>4: ${features[3] ? features[2] : 'no found Feature'}</p>
              <hr>
              <p></p>
              <p></p>
@@ -49,11 +63,11 @@ const showAllData = (allDetails,dataLimit) => {
         `
         divContainer.appendChild(div)
     });
-
+    togglespinners(false)
 }
 
-const loadSinglecard = id => {
-    // console.log(id)
+const loadSinglecard =(id) => {
+    togglespinners(true)
     const URL = `https://openapi.programming-hero.com/api/ai/tool/${id}`
     fetch(URL)
         .then(res => res.json())
@@ -63,9 +77,6 @@ const loadSinglecard = id => {
 const displaySingleCard = data => {
     console.log(data)
      
-
-
-     
     const modalContainer = document.getElementById('modal-content');
     modalContainer.innerHTML = ''
     const modal = document.createElement('div');
@@ -73,17 +84,17 @@ const displaySingleCard = data => {
     modal.innerHTML = `
     <div class="card h-100 bg-danger-subtle">
         <div class="card-body">
-        <h5 class="card-title mb-4">${data.description? data.description: 'Description not found'}</h5>
+        <h5 class="card-title mb-4">${data ? data.description: 'Description not found'}</h5>
          <div class="d-flex justify-content-between gap-2 container text-center">
          <div class="bg-white p-4 rounded">
-          <p style="color: green;">${data.pricing[0].price? data.pricing[0].price : 'Free Of Cost'} basic</p>
+          <p style="color: green;">${data.pricing? data.pricing[0].price : 'Free Of Cost'} basic</p>
          </div>
          <div class="bg-white p-4 rounded">
-         <p class="text-warning">${data.pricing[1].price} Pro</p>
+         <p class="text-warning">${data.pricing? data.pricing[1].price: 'Free Of Cost'} Pro</p>
          
          </div>
          <div class="bg-white p-4 rounded">
-         <p class="text-danger">Contact Us ${data.pricing[2].plan}</p>
+         <p class="text-danger">Contact Us ${data.pricing? data.pricing[2].plan:'Free Of Cost Enterprice'}</p>
          
          </div>
          </div>
@@ -119,7 +130,7 @@ const displaySingleCard = data => {
     <div" style="position: relative; class="card h-100 text-center">
 
         <div class="card-body">
-        <button style=" position: absolute; margin-top: -15px; margin-left: 400px; " type="button" class="btn btn-danger btn-sm">${data.accuracy.score}%accuracy</button>
+        <button style=" position: absolute; margin-top: -15px; margin-left: 400px; " type="button" class="btn btn-danger btn-sm">${data.accuracy.score? data.accuracy.score: 'no data'}%accuracy</button>
 
         <img  src=${data.image_link[0]} class="card-img-top" alt="...">
         <h5 class="card-title mt-4">${data.input_output_examples[0].input}</h5>
@@ -129,12 +140,28 @@ const displaySingleCard = data => {
     
     `
     modalContainer.appendChild(modal2)
+
+    togglespinners(false) 
+
 }
 
+ 
 
-loadData(6);
+// spinner-----------
+const togglespinners = isLoading => {
+    const spinner = document.getElementById('spiner');
+    if(isLoading === true){
+        spinner.classList.remove('d-none')
+    }
+    else{
+        spinner.classList.add('d-none')
+    }
+}
 
 document.getElementById('Show-all').addEventListener('click', function () {
         loadData();
     })
-    
+  
+
+
+loadData(6);
